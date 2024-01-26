@@ -16,7 +16,7 @@ $(function () {
             { data: 'cuit'},
             {
                 data: 'cuit',
-                render: async function (data, type, row) {
+                render: async function (data) {
                     const razonSocial = await obtenerRazonSocialPorCuit(data);
                     return razonSocial;
                 }           
