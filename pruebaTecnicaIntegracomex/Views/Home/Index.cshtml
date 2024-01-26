@@ -1,0 +1,79 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+
+<section>
+    @* tabla *@
+    <div class="card mt-3">
+        <div class="card-header">
+            <i class="fas fa-users me-1"></i>Lista De Clientes
+        </div>
+
+        <div class="card-body">
+            <div class="row">
+                <div class="col-12">
+                    <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#FormModal" onclick="abrirModal(null)">Crear Nuevo</button>
+                </div>
+            </div>
+
+            <hr />
+
+            <table id="tabla" class="display cell-border" width="100%">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>CUIT</th>
+                        <th>RazónSocial</th>
+                        <th>Teléfono</th>
+                        <th>Dirección</th>
+                        <th>Estado</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @* contenido de la tabla *@
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    @* Modal Crear *@
+    <div class="modal fade" id="FormModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-backdrop="static">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header bg-dark text-white">
+                    <h5 class="modal-title" id="exampleModalLabel">Cliente</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body g-2">
+                    <input type="hidden" id="txtid" name="Id" value="0" />
+                    <form id="usuarioForm" method="post" enctype="multipart/form-data">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <label for="txtnombre" class="form-label">Cuit</label>
+                                <input type="number" class="form-control" id="txtcuit" name="Cuit" required>
+                            </div>
+                            <div class="col-sm-6">
+                                <label for="txtprecio" class="form-label">Teléfono</label>
+                                <input type="number" class="form-control" id="txttelefono" name="Telefono" required>
+                            </div>
+                            <div class="col-sm-6">
+                                <label for="txtprecio" class="form-label">Dirección</label>
+                                <input type="text" class="form-control" id="txtdireccion" name="Direccion" required>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                            <button id="btnGuardarCambios" type="submit" class="btn btn-primary">Guardar Cambios</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Agregar el código de los mensajes toast -->
+    <div id="toastContainer" style="position: fixed; top: 16px; right: 16px; z-index: 9999;"></div>
+</section>
+
