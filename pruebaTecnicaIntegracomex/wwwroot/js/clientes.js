@@ -136,6 +136,13 @@ $("#btnGuardarCambios").on("click", function () {
 
     }
 
+    if (cuit.length !== 11 ) {
+
+    mostrarToast("El cuit debe tener 11 valores", "error");
+    return;
+
+    }
+
     var formData = new FormData($("#usuarioForm")[0]);
 
     if ($("#txtid").val() == 0) {
