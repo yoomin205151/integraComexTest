@@ -98,10 +98,10 @@ namespace pruebaTecnicaIntegracomex.Controllers
                     var telefono = nuevoCliente.Telefono;
                     var direccion = nuevoCliente.Direccion;
 
-                    await Task.Run(() => _db.Database.ExecuteSqlRaw("EXEC SP_CREARCLIENTE @cuit, @telefono, @direccion",
+                    await _db.Database.ExecuteSqlRawAsync("EXEC SP_CREARCLIENTE @cuit, @telefono, @direccion",
                                             new SqlParameter("@cuit", cuit),
                                             new SqlParameter("@telefono", telefono),
-                                            new SqlParameter("@direccion", direccion)));
+                                            new SqlParameter("@direccion", direccion));
 
                     return Ok("El cliente se creo exitosamente");
 
@@ -129,11 +129,11 @@ namespace pruebaTecnicaIntegracomex.Controllers
                     var nuevoTelefono = clienteModificado.Telefono;
                     var nuevaDireccion = clienteModificado.Direccion;
 
-                    await Task.Run(() => _db.Database.ExecuteSqlRaw("EXEC SP_EDITARCLIENTE @id, @nuevoCuit, @nuevoTelefono, @nuevaDireccion",
+                    await _db.Database.ExecuteSqlRawAsync("EXEC SP_EDITARCLIENTE @id, @nuevoCuit, @nuevoTelefono, @nuevaDireccion",
                                             new SqlParameter("@id", id),
                                             new SqlParameter("@nuevoCuit", nuevoCuit),
                                             new SqlParameter("@nuevoTelefono", nuevoTelefono),
-                                            new SqlParameter("@nuevaDireccion", nuevaDireccion)));
+                                            new SqlParameter("@nuevaDireccion", nuevaDireccion));
 
                     return Ok("El cliente se modifico exitosamente");
                 }
