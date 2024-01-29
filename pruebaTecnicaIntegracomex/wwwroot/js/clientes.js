@@ -177,7 +177,7 @@ $("#FormModal").on("hidden.bs.modal", function () {
         let idCliente = data.id;
         let estadoActual = data.activo;
 
-        var nuevoEstado = !estadoActual;
+        let nuevoEstado = !estadoActual;
 
 
         $.post("/Home/CambiarEstadoCliente", { id: idCliente, nuevoEstado: nuevoEstado })
