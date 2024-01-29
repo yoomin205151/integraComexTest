@@ -68,8 +68,8 @@ function abrirModal(json) {
 /*evento para el boton de editar*/
 $("#tabla tbody").on("click", ".btn-editar", function () {
 
-    var filaSeleccionada = $(this).closest("tr");
-    var data = tabla.row(filaSeleccionada).data();
+    let filaSeleccionada = $(this).closest("tr");
+    let data = tabla.row(filaSeleccionada).data();
     abrirModal(data);
 
 });
@@ -77,9 +77,9 @@ $("#tabla tbody").on("click", ".btn-editar", function () {
 /*Evento de clic para el botón de eliminar*/
 $("#tabla tbody").on("click", ".btn-eliminar", function () {
 
-    var filaSeleccionada = $(this).closest("tr");
-    var data = tabla.row(filaSeleccionada).data();
-    var idCliente = data.id;
+    let filaSeleccionada = $(this).closest("tr");
+    let data = tabla.row(filaSeleccionada).data();
+    let idCliente = data.id;
 
     if (confirm("¿Estás seguro de que deseas eliminar este cliente?")) {
         $.post("/Home/EliminarCliente", { id: idCliente })
@@ -118,7 +118,7 @@ $("#btnGuardarCambios").on("click", function () {
 
     }
 
-    var formData = new FormData($("#usuarioForm")[0]);
+    let formData = new FormData($("#usuarioForm")[0]);
 
     if ($("#txtid").val() == 0) {
         $.ajax({
@@ -171,11 +171,11 @@ $("#FormModal").on("hidden.bs.modal", function () {
 
 /*evento para cambiar estado del cliente*/
     $("#tabla tbody").on("click", "td:nth-child(6)", function () {
-        var celdaSeleccionada = $(this);
-        var filaSeleccionada = $(this).closest("tr");
-        var data = tabla.row(filaSeleccionada).data();
-        var idCliente = data.id;
-        var estadoActual = data.activo;
+        let celdaSeleccionada = $(this);
+        let filaSeleccionada = $(this).closest("tr");
+        let data = tabla.row(filaSeleccionada).data();
+        let idCliente = data.id;
+        let estadoActual = data.activo;
 
         var nuevoEstado = !estadoActual;
 
@@ -194,8 +194,8 @@ $("#FormModal").on("hidden.bs.modal", function () {
 
 // Mostrar mensaje toast
 function mostrarToast(message, type) {
-    var toastContainer = $("#toastContainer");
-    var toastClass = "";
+    let toastContainer = $("#toastContainer");
+    let toastClass = "";
 
     switch (type) {
         case "success":
@@ -206,7 +206,7 @@ function mostrarToast(message, type) {
             break;
     }
 
-    var toast = `
+    let toast = `
                     <div class="toast show ${toastClass}" role="alert" aria-live="assertive" aria-atomic="true">
                         <div class="toast-body">
                             ${message}
