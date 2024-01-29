@@ -42,31 +42,6 @@ $(function () {
             url: '//cdn.datatables.net/plug-ins/1.13.7/i18n/es-ES.json'
         }
     });
-
-    
-    /*evento para cambiar estado del cliente*/
-    $("#tabla tbody").on("click", "td:nth-child(6)", function () {
-        var celdaSeleccionada = $(this);
-        var filaSeleccionada = $(this).closest("tr");
-        var data = tabla.row(filaSeleccionada).data();
-        var idCliente = data.id;
-        var estadoActual = data.activo;
-
-        var nuevoEstado = !estadoActual;
-
-
-        $.post("/Home/CambiarEstadoCliente", { id: idCliente, nuevoEstado: nuevoEstado })
-            .done(function (response) {
-                mostrarToast("Estado del cliente cambiado exitosamente.", "success");
-                data.activo = nuevoEstado;
-                tabla.row(filaSeleccionada).data(data).draw();
-            })
-            .fail(function (error) {
-                mostrarToast("Ocurrido un error al cambiar el estado del cliente", "error");
-                console.error(error);
-            });
-    });
-
    
 });
 
@@ -193,6 +168,29 @@ $("#usuarioForm").on("submit", function (event) {
 $("#FormModal").on("hidden.bs.modal", function () {
     $("#usuarioForm")[0].reset();
 });
+
+/*evento para cambiar estado del cliente*/
+    $("#tabla tbody").on("click", "td:nth-child(6)", function () {
+        var celdaSeleccionada = $(this);
+        var filaSeleccionada = $(this).closest("tr");
+        var data = tabla.row(filaSeleccionada).data();
+        var idCliente = data.id;
+        var estadoActual = data.activo;
+
+        var nuevoEstado = !estadoActual;
+
+
+        $.post("/Home/CambiarEstadoCliente", { id: idCliente, nuevoEstado: nuevoEstado })
+            .done(function (response) {
+                mostrarToast("Estado del cliente cambiado exitosamente.", "success");
+                data.activo = nuevoEstado;
+                tabla.row(filaSeleccionada).data(data).draw();
+            })
+            .fail(function (error) {
+                mostrarToast("Ocurrido un error al cambiar el estado del cliente", "error");
+                console.error(error);
+            });
+    });
 
 // Mostrar mensaje toast
 function mostrarToast(message, type) {
